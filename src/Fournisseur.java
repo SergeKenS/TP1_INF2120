@@ -21,6 +21,11 @@ public class Fournisseur extends Utilisateur {
      * vendus par ce fournisseur.
      */
     @Override
+
+    /**
+     * Cette méthode retourne une liste de chaines de caractères représentant le profil de ce consommateur.
+     * return :
+     */
     public ArrayList<String> compilerProfil() {
         ArrayList<String> profil = new ArrayList<>(0);
 
@@ -42,7 +47,7 @@ public class Fournisseur extends Utilisateur {
      * @param eval        : L’évaluation donnée par le fournisseur à l’utilisateur reçu en paramètre (entre 1 et 5)
      */
     @Override
-    public void evaluer(Utilisateur consommateur, int eval) {
+    public void evaluer(Utilisateur consommateur, int eval) throws Exception {
 
         //si le consommateur passé en paramètre est null.
         if (consommateur == null) {
@@ -55,11 +60,11 @@ public class Fournisseur extends Utilisateur {
         //si le consommateur passé en paramètre n’a jamais acheté de produit(s) de ce fournisseur.
         for (Produit produit : this.produits) {
             if (consommateur.compilerProfil().contains(produit.getCategorie())) {
-                throw new RuntimeException("Erreur, ce fournisseur ne peut pas evaluer ce consommateur.");
+                throw new Exception("Erreur, ce fournisseur ne peut pas evaluer ce consommateur.");
             }
         }
         if (eval < 1 || eval > 5) {
-            throw new RuntimeException("Erreur, l'evaluation doit etre un nombre entier entre 1 et 5 inclusivement.");
+            throw new Exception("Erreur, l'evaluation doit etre un nombre entier entre 1 et 5 inclusivement.");
         }
         consommateur.ajouterEvaluation(eval);
     }

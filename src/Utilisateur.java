@@ -49,7 +49,7 @@ public abstract class Utilisateur {
      * @param eval        : L’évaluation donnée par cet utilisateur à l’utilisateur reçu en paramètre
      *                    (entre 1 et 5)
      */
-    public abstract void evaluer(Utilisateur utilisateur, int eval);
+    public abstract void evaluer(Utilisateur utilisateur, int eval) throws Exception;
 
     public String getPseudo() {
         return pseudo;
@@ -83,6 +83,10 @@ public abstract class Utilisateur {
         this.courriel = courriel;
     }
 
+    /**
+     * Cette méthode calcule, et retourne la moyenne de toutes les évaluations de cet utilisateur
+     * @return : la moyenne des evaluations recu par cette utilisateur.
+     */
     public double evaluationMoyenne() {
         int somme = 0;
         double moyenne;
@@ -97,6 +101,11 @@ public abstract class Utilisateur {
         return moyenne;
     }
 
+
+    /**
+     * Cette méthode permet d’ajouter une nouvelle évaluation reçue à la liste des évaluations de cet utilisateur.
+     * @param eval : L’évaluation à ajouter à la liste d’évaluations de cet utilisateur
+     */
     public void ajouterEvaluation(int eval) {
         try {
             if (eval < 1 || eval > 5) {
@@ -110,6 +119,9 @@ public abstract class Utilisateur {
     }
 
     @Override
+    /**
+     * deux utilisateurs sont considérés comme étant égaux s’ils ont le même id.
+     */
     public boolean equals(Object utilisateur) {
         return this.id == ((Utilisateur) utilisateur).getId();
     }
@@ -124,8 +136,7 @@ public abstract class Utilisateur {
      */
     @Override
     public String toString() {
-        return id + " : " + pseudo + " - " + motPasse + " - " + courriel
-                + " - " + evaluations.size();
+            return id + " : " + pseudo + " - " + motPasse + " - " + courriel
+                    + " - " + evaluations.size();
     }
-
 }
