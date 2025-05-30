@@ -14,6 +14,11 @@ public class Consommateur extends Utilisateur {
         this.achats = (ArrayList<Produit>) consommateur.achats.clone();
     }
 
+    /**
+     * Permet de recenser toutes les catégories des produits acheter par ce consommateur.
+     * @return retourne une liste contenant toutes les catégories différentes recensées sur les produits
+     * acheter par ce consommateur.
+     */
     @Override
     public ArrayList<String> compilerProfil() {
         ArrayList<String> profil = new ArrayList<>(0);
@@ -74,6 +79,7 @@ public class Consommateur extends Utilisateur {
             this.achats.add(produit1);
         }
     }
+
 
     public ArrayList<Integer> fournisseurs () {
         ArrayList<Integer> idFournisseurs = new ArrayList<>(0);

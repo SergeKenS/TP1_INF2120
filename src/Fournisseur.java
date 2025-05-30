@@ -9,16 +9,22 @@ public class Fournisseur extends Utilisateur {
         this.produits = new ArrayList<>(0);
     }
 
+
     public Fournisseur(Fournisseur fournisseur) {
         super(fournisseur);
         this.produits = (ArrayList<Produit>) fournisseur.produits.clone();
     }
 
+    /**
+     * Permet de recenser toutes les catégories des produits vendu par ce fournisseur.
+     * @return retourne une liste contenant toutes les catégories différentes recensées sur les produits
+     * vendus par ce fournisseur.
+     */
     @Override
     public ArrayList<String> compilerProfil() {
         ArrayList<String> profil = new ArrayList<>(0);
 
-        for (Produit produit : this.produits) {
+        for (Produit produit : produits) {
             if (produit.getQuantite() > 0) {
                 String categorie = produit.getCategorie();
                 if (!profil.contains(categorie)) {
@@ -29,6 +35,12 @@ public class Fournisseur extends Utilisateur {
         return profil;
     }
 
+    /**
+     * permet à ce fournisseur d’évaluer un consommateur (celui reçu en paramètre). Une évaluation
+     * valide est une note comprise entre 1 et 5.
+     * @param consommateur : L’utilisateur à évaluer par cet utilisateur
+     * @param eval        : L’évaluation donnée par le fournisseur à l’utilisateur reçu en paramètre (entre 1 et 5)
+     */
     @Override
     public void evaluer(Utilisateur consommateur, int eval) {
 

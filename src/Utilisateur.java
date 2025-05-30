@@ -10,7 +10,13 @@ public abstract class Utilisateur {
     private String courriel;
     private ArrayList<Integer> evaluations;
 
-
+    /**
+     * Ce constructeur initialise les attributs d’instance pseudo, motPasse, et courriel avec les valeurs reçues en
+     * paramètres. La liste des évaluations de cet utilisateur est non null et vide.
+     * @param pseudo : Le pseudonyme de cet utilisateur.
+     * @param motPasse : Le mot de passe de cet utilisateur.
+     * @param courriel : Le courriel de cet utilisateur.
+     */
     public Utilisateur(String pseudo, String motPasse, String courriel) {
         this.pseudo = pseudo;
         this.motPasse = motPasse;
@@ -19,12 +25,16 @@ public abstract class Utilisateur {
         id = id + 1;
     }
 
+    /**
+     * Permet de construire une copie a partir de l'utilisateur passer en parametre.
+     * @param utilisateur
+     */
     public Utilisateur(Utilisateur utilisateur) {
         this.pseudo = utilisateur.pseudo;
         this.motPasse = utilisateur.motPasse;
         this.courriel = utilisateur.courriel;
         this.id = utilisateur.id;
-        this.evaluations = (ArrayList<Integer>) utilisateur.getEvaluations().clone();
+        this.evaluations = (ArrayList<Integer>)utilisateur.getEvaluations().clone();
     }
 
     /**
@@ -117,6 +127,5 @@ public abstract class Utilisateur {
         return id + " : " + pseudo + " - " + motPasse + " - " + courriel
                 + " - " + evaluations.size();
     }
-
 
 }
